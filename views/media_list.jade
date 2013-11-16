@@ -1,0 +1,8 @@
+include ajax
+
+mixin media(data)
+	include media_item
+
+each item in data
+	div
+		mixin media(item)

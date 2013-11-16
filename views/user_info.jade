@@ -1,0 +1,28 @@
+include ajax
+
+div
+	mixin text('Username', data.username)
+
+div
+	mixin text('Full name', data.full_name)
+
+div
+	mixin text('Id', data.id)
+
+div
+	mixin image('Profile picture', data.profile_picture, 'Profile picture for "' + data.username + '"')
+
+div
+	mixin link('Website', data.website)
+	
+div
+	mixin text('Posts', data.counts.media)	
+
+div
+	mixin text('Follows', data.counts.follows)
+
+div
+	mixin text('Followers', data.counts.followed_by)	
+
+div
+	mixin text('Bio', data.bio)

@@ -1,0 +1,8 @@
+div
+	div Media
+		div
+			input#mediaq(type=text, placeholder="Query")
+			a(href="#", onclick="dispatch('media/search', 'mediaq')") Search
+		div
+			input#mediaid(type=text, placeholder="ID number")
+			a(href="#", onclick="dispatch('media/get', 'mediaid')") Get

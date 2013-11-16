@@ -1,0 +1,46 @@
+#!/bin/bash
+
+if [ ! -f vars ]
+then
+	echo "Variables file not defined, instagram API cannot be accessed without it!"
+	echo ""
+	echo "Create a file with the following contents:"
+	echo ""
+	echo "export CLIENT_ID=<your instagram client id>"
+	echo "export CLIENT_SECRET=<your instagram client secret>"
+	echo ""
+	echo "Save it in the app root folder as 'vars', then re-run this script"
+	exit 0
+fi
+
+echo "Stopping previous instance"
+forever stop $PWD/app.js >/dev/null
+if [ -f logs/log.err ] && (( `stat -c%s logs/log.err` > 0 ))
+then
+	echo "Previous error log:"
+	cat logs/log.err | xargs -d'\n' printf '  - %s\n'
+fi
+
+# Source client ID and other account details
+echo "Sourcing variables"
+source vars
+
+# Start the app
+echo "Launching the app"
+[ -d logs ] && rm logs/log.* || mkdir logs
+forever start --minUptime 1000 --spinSleepTime 1000 -l $PWD/logs/log.for -o $PWD/logs/log.out -e $PWD/logs/log.err $PWD/app.js >/dev/null
+sleep 0.5
+
+echo "Forever log:"
+cat logs/log.for | xargs -d'\n' printf '  - %s\n'
+
+echo "App error log:"
+cat logs/log.err | xargs -d'\n' printf '  - %s\n'
+
+if [ $? ]
+then
+	echo "Started node.js server"
+else
+	echo "Failed to start node.js server"
+fi
+echo ""

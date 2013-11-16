@@ -1,0 +1,5 @@
+nav.jade - The actual control interface
+	Add as many endpoints as possible, with appropriate JADE templates to format the output.
+
+Authenticated queries
+	Add OAuth support, to allow authenticated access to items that require it

@@ -1,0 +1,4 @@
+pidfile
+node_modules/*
+vars
+logs/*

@@ -1,0 +1,42 @@
+include ajax
+
+div
+	mixin text('Type', data.type)
+
+div
+	mixin image('Image', data.images.standard_resolution.url, data.caption)
+
+div
+	mixin text('Caption', data.caption && data.caption.text || '')
+
+div
+	| Users in photo:
+	ul
+		each user in data.users_in_photo
+			li
+				mixin user(user)
+
+div
+	mixin text('Filter', data.filter)
+
+div
+	| Tags:
+	ul
+		each tag in data.tags
+			li #{tag}
+
+div
+	| Likes:
+	ul
+		each like in data.likes.data
+			li
+				mixin user(like)
+
+
+div
+	| Comments:
+	ul
+		each comment in data.comments.data
+			li
+				mixin user(comment.from)
+				span.value #{comment.text}

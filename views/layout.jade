@@ -1,0 +1,17 @@
+doctype 5
+html
+	head
+		title= title
+		link(rel='stylesheet', href='style.css')
+		link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Oswald:700')
+		link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Lato')
+		script(src='dispatch.js')
+	body
+		header.
+			Instatest
+		#content
+			block content
+		#nav
+			include nav.jade
+		footer
+			a(href="http://hackology.co.uk") Hackology
