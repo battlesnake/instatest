@@ -1,4 +1,5 @@
 mixin link(title, target)
-	| #{title}
+	= title
 	span.value
 		a(href=target, target='_blank') #{target}
+		block

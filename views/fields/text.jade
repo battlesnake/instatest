@@ -1,3 +1,4 @@
-mixin text(name, value)
-	| #{name}:
-	span.value #{value}
+mixin text(title)
+	= title + ':'
+	span.value
+		block

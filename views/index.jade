@@ -2,3 +2,8 @@ extends layout
 
 block content
 	div#mainview
+
+	if command
+		script.
+			command = !{ JSON.stringify(command || null) };
+			query = !{ JSON.stringify(query || null) };

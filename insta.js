@@ -12,7 +12,7 @@ module.exports = function (query, callback) {
 		{
 			host: 'api.instagram.com',
 			port: 443,
-			path: path.join('/v1/', query) + '?client_id=' + encodeURIComponent(cid),
+			path: path.join('/v1/', query) + (query.indexOf('?') == -1 ? '?' : '&') + 'client_id=' + encodeURIComponent(cid),
 			method: 'GET',
 			headers: {
 				'Connection': 'keep-alive'
@@ -24,8 +24,13 @@ module.exports = function (query, callback) {
 				json += chunk;
 			});
 			result.on('end', function () {
-				var data = JSON.parse(json).data;
-				callback(data, null);
+				if (json.substr(0, 9) == '<!DOCTYPE') {
+					callback(data, 'Unknown error');
+				}
+				else {
+					var data = JSON.parse(json).data;
+					callback(data, null);
+				}
 			});
 		});
 	req.on('error', function (error) {

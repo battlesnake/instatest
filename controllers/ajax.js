@@ -30,8 +30,9 @@ module.exports = function(req, res) {
 		};
 	}
 	var commands = {
-		'user/info'		: function () { insta('/users/' + checkInt(req.query['userid']), callback('user_info')); },
-		'media/get'		: function () { insta('/media/' + checkHex(req.query['mediaid']), callback('media_item')); },
+		'user/get'		: function () { insta('/users/' + checkInt(req.query['userid']), callback('user_info')); },
+		'user/search'	: function () { insta('/users/search?q=' + encodeURIComponent(req.query['userq']), callback('user_list')); },
+		'media/get'		: function () { insta('/media/' + checkHex(req.query['mediaid']), callback('media_info')); },
 		'media/search'	: function () { insta('/tags/' + checkStr(req.query['mediaq']) + '/media/recent', callback('media_list')); }
 	};
 	var command = req.query.command;

@@ -1,0 +1,66 @@
+include ajax
+
+div.vert.card
+
+	div
+		+text('Id number')
+			+dispatch('media/get', { mediaid: data.id })= data.id
+
+	div
+		+text('User')
+			+user(data.user)
+
+	div
+		+text('Type')= data.type
+
+	div
+		+image('Image', data.images.standard_resolution.url, data.caption && data.caption.text)
+
+	div
+		+text('Caption')= data.caption && data.caption.text || ''
+
+
+	if data.users_in_photo.length
+	
+		div
+			+text('Users in photo')
+				ul
+					each user in data.users_in_photo
+						li
+							+user(user)
+
+
+	if data.filter
+	
+		div
+			+text('Filter')= data.filter
+
+
+	if data.tags.length
+	
+		div
+			+text('Tags')
+				ul
+					each tag in data.tags
+						li= tag
+
+
+	if data.likes.data.length
+	
+		div
+			+text('Likes')
+				ul
+					each like in data.likes.data
+						li
+							+user(like)
+
+
+	if data.comments.data.length
+
+		div
+			+text('Comments')
+				ul
+					each comment in data.comments.data
+						li
+							+user(comment.from)
+							span.value= comment.text

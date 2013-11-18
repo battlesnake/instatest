@@ -1,0 +1,6 @@
+mixin dispatch(command, kvp)
+	- var params = !kvp ? [] : (kvp instanceof Array ? kvp : [kvp]);
+	- params.unshift(command);
+	- params = params.map(JSON.stringify).join(', ');
+	a(href='javascript:void(0);', onclick='dispatch(' + params + ');')
+		block

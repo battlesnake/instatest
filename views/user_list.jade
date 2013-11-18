@@ -1,0 +1,8 @@
+include ajax
+
+mixin userinfo(data)
+	include user_info
+
+div.horz.list
+	each item in data
+		+userinfo(item)

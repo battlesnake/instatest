@@ -1,8 +1,8 @@
 include ajax
 
-mixin media(data)
-	include media_item
+mixin mediainfo(data)
+	include media_info
 
-each item in data
-	div
-		mixin media(item)
+div.horz.list
+	each item in data
+		+mediainfo(item)

@@ -1,8 +1,27 @@
+- locals.fields = [];
+
+mixin field(id, text, type)
+	input.queryfield(id=id, placeholder=text, type=type)
+	- locals.fields.push(id);
+
+mixin button(command, text)
+	- locals.fields.unshift(command);
+	- locals.fields = locals.fields.map(JSON.stringify).join(', ');
+	input(type='submit', onclick='dispatch(' + locals.fields + ');', value=text)
+	- locals.fields = [];
+
 div
+	div User
+		div
+			+field('userq', 'User query', 'text')
+			+button('user/search', 'Search')
+		div
+			+field('userid', 'ID number', 'text')
+			+button('user/get', 'Get')
 	div Media
 		div
-			input#mediaq(type=text, placeholder="Query")
-			a(href="#", onclick="dispatch('media/search', 'mediaq')") Search
+			+field('mediaq', 'Tag query', 'text')
+			+button('media/search', 'Search')
 		div
-			input#mediaid(type=text, placeholder="ID number")
-			a(href="#", onclick="dispatch('media/get', 'mediaid')") Get
+			+field('mediaid', 'ID number', 'text')
+			+button('media/get', 'Get')

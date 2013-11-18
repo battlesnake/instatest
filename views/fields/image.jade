@@ -1,3 +1,4 @@
-mixin image(text, src, alt)
-	| #{text}
+mixin image(title, src, alt)
+	= title
 	img(src=src, alt=alt)
+	block
