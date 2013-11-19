@@ -28,7 +28,7 @@ function dispatch(command, args) {
 	Array.prototype
 		.forEach.call(document.getElementsByClassName('queryfield'),
 			function (field) {
-				if (typeof kvs[field.id] === 'undefined')
+				if (typeof kvs[field.id] === 'undefined' && field.value)
 					kvs[field.id] = field.value;
 			});
 	/* Create key-value array from kvs object */
