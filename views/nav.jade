@@ -11,14 +11,16 @@ mixin button(command, text)
 	- locals.fields = [];
 
 div
-	div User
+	div
+		span User
 		div
 			+field('userq', 'User query', 'text')
 			+button('user/search', 'Search')
 		div
 			+field('userid', 'ID number', 'text')
 			+button('user/get', 'Get')
-	div Media
+	div
+		span Media
 		div
 			+field('mediaq', 'Tag query', 'text')
 			+button('media/search', 'Search')

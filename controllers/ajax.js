@@ -23,10 +23,14 @@ function checkStr(str) {
 module.exports = function(req, res) {
 	function callback(template) {
 		return function (result, error) {
-			if (error)
+			if (error) {
+				console.log('ajax: error: ' + req.query.command + ': ' + JSON.stringify(error));
 				res.status(500).send(error);
-			else
+			}
+			else {
+				console.log('ajax: ' + req.query.command + ': ' + JSON.stringify(result));
 				res.render(template, { data: result });
+			}
 		};
 	}
 	var commands = {

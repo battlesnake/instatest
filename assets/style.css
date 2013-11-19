@@ -1,3 +1,19 @@
+/* Webfonts */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(Lato.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Oswald Bold'), local('Oswald-Bold'), url(Oswald-bold.ttf) format('truetype');
+}
+
+/* Basics */
 body {
 	display: flex;
 	flex-flow: row wrap;
@@ -11,79 +27,89 @@ body>* {
 }
 
 body>* {
-	border: 1px dotted blue;
 	margin: 0;
-	padding: 8px;
+	padding: 8px 8px 8px 12px;
 }
 
 header {
 	font-family: "Oswald";
 	align-self: flex-start;
 	font-size: 24pt;
+	background: #ff8;
 }
 
 footer {
 	align-self: flex-end;
+	background: #88f;
+	color: black;
+}
+
+footer a {
+	color: #448;
+	text-decoration: none;
 }
 
 #nav {
 	padding-right: 16px;
+	background: #8f8;
 }
 
 #content {
 	text-align: left;
 	padding: 16px;
 	font-size: 10pt;
+	background: #eee;
 }
 
 @media all and (min-width: 600px) {
 	#nav { flex: 1 auto; }
+	body>* { margin: 2px; }
 }
  
 @media all and (min-width: 800px) {
-	#content {
-		flex: 1 400px;
-	}
-	#nav {
-		flex: 0 100px;
-	}
-	header {
-		order: 1;
-	} 
-	#nav {
-		order: 2;
-	} 
-	#content {
-		order: 3;
-	}
-	footer {
-		order: 4;
-	}
+	body>* { margin: 6px; }
+	header { border-radius: 16px 16px 0 16px; }
+	footer { border-radius: 16px 0 16px 16px; }
+	#nav { border-radius: 16px 0 0 16px; }
+	#content { flex: 1 400px; }
+	#nav { flex: 0 100px; }
+	header { order: 1; } 
+	#nav { order: 2; } 
+	#content { order: 3; }
+	footer { order: 4; }
 }
 
 #nav {
 	font-weight: bold;
 }
 
-#nav>div,
+#nav>div {
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
 #nav>div>div {
-	padding: 0 !important;
-	margin: 0 !important;
-	border: 0 !important;
+	padding: 0;
+	margin: 0 0 8px 0;
+	border: 0;
 }
 
-#nav div>div {
-	padding-left: 12px;
-	border-left: 1px solid;
+#nav>div>div>span {
+	border: 1px solid #7e7;
+	border-radius: 8px;
+	padding: 0 6px 0px 4px;
 }
 
-#nav div>div:last-child {
-	border-bottom: 1px solid;
-	padding-bottom: 8px;
+#nav div>div>div {
+	margin-left: 6px;
+	padding-left: 6px;
+	border-left: 1px solid #7e7;
 }
 
-#nav div:last-child>div:last-child {
-	border-bottom: 0;
+#nav div>div>div:last-child {
+	border-bottom: 1px solid #7e7;
+	border-bottom-left-radius: 12px;
 }
 
 #nav div {
@@ -123,13 +149,14 @@ footer {
 #mainview .card {
 	border: 1px solid silver;
 	border-radius: 0.5em;
-	padding: 0.5em;
-	margin: 0.5em;
+	padding: 12px;
+	margin: 16px;
 	flex-grow: 0;
 	flex-shrink: 0;
 	min-width: 20%;
 	max-width: 25%;
 	display: inline-flex;
+	background: #f6f6f6;
 }
 
 #mainview .list {
@@ -178,6 +205,7 @@ footer {
 	display: block;
 	max-width: 100%;
 	margin-top: 0.25em;
+	border-radius: 12px;
 }
 
 #mainview .card div+div {
@@ -192,4 +220,8 @@ footer {
 #mainview .vert {
 	display: flex;
 	flex-flow: column wrap;
+}
+
+#mainview a {
+	text-decoration: none;
 }

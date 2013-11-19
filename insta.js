@@ -8,11 +8,13 @@ if (!cid.length)
 	throw 'CLIENT_ID not set - did you remember to `source vars`?';
 
 module.exports = function (query, callback) {
+	var uri = path.join('/v1/', query) + (query.indexOf('?') == -1 ? '?' : '&') + 'client_id=' + encodeURIComponent(cid);
+	console.log('insta: ' + uri);
 	var req = https.request(
 		{
 			host: 'api.instagram.com',
 			port: 443,
-			path: path.join('/v1/', query) + (query.indexOf('?') == -1 ? '?' : '&') + 'client_id=' + encodeURIComponent(cid),
+			path: uri,
 			method: 'GET',
 			headers: {
 				'Connection': 'keep-alive'
