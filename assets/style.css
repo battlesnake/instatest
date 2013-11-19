@@ -61,9 +61,20 @@ footer a {
 	background: #eee;
 }
 
+header { order: 1; } 
+#nav { order: 2; } 
+#content { order: 3; }
+footer { order: 4; }
+
+#nav div>div { display: inline-block; border: 0; }
+
 @media all and (min-width: 600px) {
 	#nav { flex: 1 auto; }
 	body>* { margin: 2px; }
+}
+
+#mainview .list>* {
+	width: 85%;
 }
  
 @media all and (min-width: 800px) {
@@ -73,10 +84,13 @@ footer a {
 	#nav { border-radius: 16px 0 0 16px; }
 	#content { flex: 1 400px; }
 	#nav { flex: 0 100px; }
-	header { order: 1; } 
-	#nav { order: 2; } 
-	#content { order: 3; }
-	footer { order: 4; }
+	#nav div>div { display: block; }
+	#nav div>div>div:last-child { border-bottom: 1px solid #7e7; border-bottom-left-radius: 12px; }
+	#nav input[type=submit] { text-decoration: underline; color: inherit; background: inherit; border: 0; padding: 0; margin: 0; }
+	#mainview .card {
+		min-width: 20%;
+		max-width: 25%;
+	}
 }
 
 #nav {
@@ -107,11 +121,6 @@ footer a {
 	border-left: 1px solid #7e7;
 }
 
-#nav div>div>div:last-child {
-	border-bottom: 1px solid #7e7;
-	border-bottom-left-radius: 12px;
-}
-
 #nav div {
 	padding-top: 4px;
 	padding-bottom: 4px;
@@ -129,8 +138,7 @@ footer a {
 	font-weight: bold;
 }
 
-#nav a,
-#nav input[type=submit] {
+#nav a {
 	font-weight: normal;
 	text-decoration: underline;
 	color: inherit;
@@ -153,8 +161,7 @@ footer a {
 	margin: 16px;
 	flex-grow: 0;
 	flex-shrink: 0;
-	min-width: 20%;
-	max-width: 25%;
+	/* Widths set in media query */
 	display: inline-flex;
 	background: #f6f6f6;
 }

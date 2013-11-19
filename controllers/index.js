@@ -5,5 +5,5 @@ module.exports = function(req, res) {
 		delete kvp.command;
 		delete kvp.__proto__;
 	}
-	res.render('index', { command: cmd, query: kvp, locals: { } });
+	res.render('index', { title: 'Instatest: Sandbox for testing instagram API commands', command: cmd, query: kvp, locals: { } });
 };
