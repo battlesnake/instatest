@@ -1,4 +1,5 @@
 /* Webfonts */
+
 @font-face {
   font-family: 'Lato';
   font-style: normal;
@@ -14,20 +15,19 @@
 }
 
 /* Basics */
+
 body {
+	font-family: "LATO", "HelveticaNeue-Black", "Helvetica Neue Black", "Helvetica Neue", "Arial", sans-serif;
+	font-size: 12pt;
 	display: flex;
 	flex-flow: row wrap;
 	align-items: stretch;
-	font-family: "LATO", "HelveticaNeue-Black", "Helvetica Neue Black", "Helvetica Neue", "Arial", sans-serif;
-	font-size: 12pt;
+	margin: 6px;
+	padding: 0;
 }
 
 body>* {
 	flex: 1 100%;
-}
-
-body>* {
-	margin: 0;
 	padding: 8px 8px 8px 12px;
 }
 
@@ -49,12 +49,12 @@ footer a {
 	text-decoration: none;
 }
 
-#nav {
+nav {
 	padding-right: 16px;
 	background: #8f8;
 }
 
-#content {
+article {
 	text-align: left;
 	padding: 16px;
 	font-size: 10pt;
@@ -62,14 +62,14 @@ footer a {
 }
 
 header { order: 1; } 
-#nav { order: 2; } 
-#content { order: 3; }
+nav { order: 2; } 
+article { order: 3; }
 footer { order: 4; }
 
-#nav div>div { display: inline-block; border: 0; }
+nav div>div { display: inline-block; border: 0; }
 
 @media all and (min-width: 600px) {
-	#nav { flex: 1 auto; }
+	nav { flex: 1 auto; }
 	body>* { margin: 2px; }
 }
 
@@ -81,52 +81,48 @@ footer { order: 4; }
 	body>* { margin: 6px; }
 	header { border-radius: 16px 16px 0 16px; }
 	footer { border-radius: 16px 0 16px 16px; }
-	#nav { border-radius: 16px 0 0 16px; }
-	#content { flex: 1 400px; }
-	#nav { flex: 0 100px; }
-	#nav div>div { display: block; }
-	#nav div>div>div:last-child { border-bottom: 1px solid #7e7; border-bottom-left-radius: 12px; }
-	#nav input[type=submit] { text-decoration: underline; color: inherit; background: inherit; border: 0; padding: 0; margin: 0; }
-	#mainview .card {
-		min-width: 20%;
-		max-width: 25%;
-	}
+	nav { border-radius: 16px 0 0 16px; flex: 0 100px; }
+	article { flex: 1 500px; }
+	nav div>div { display: block; }
+	nav div>div>div:last-child { border-bottom: 1px solid #7e7; border-bottom-left-radius: 12px; }
+	nav input[type=submit] { text-decoration: underline; color: inherit; background: inherit; border: 0; padding: 0; margin: 0; }
+	#mainview .card { min-width: 20%; max-width: 25%; }
 }
 
-#nav {
+nav {
 	font-weight: bold;
 }
 
-#nav>div {
+nav>div {
 	padding: 0;
 	margin: 0;
 	border: 0;
 }
 
-#nav>div>div {
+nav>div>div {
 	padding: 0;
 	margin: 0 0 8px 0;
 	border: 0;
 }
 
-#nav>div>div>span {
+nav>div>div>span {
 	border: 1px solid #7e7;
 	border-radius: 8px;
 	padding: 0 6px 0px 4px;
 }
 
-#nav div>div>div {
+nav div>div>div {
 	margin-left: 6px;
 	padding-left: 6px;
 	border-left: 1px solid #7e7;
 }
 
-#nav div {
+nav div {
 	padding-top: 4px;
 	padding-bottom: 4px;
 }
 
-#nav input {
+nav input {
 	max-width: 100%;
 	margin: 0;
 	margin-right: 8px;
@@ -134,11 +130,11 @@ footer { order: 4; }
 	border: 1px solid;
 }
 
-#nav {
+nav {
 	font-weight: bold;
 }
 
-#nav a {
+nav a {
 	font-weight: normal;
 	text-decoration: underline;
 	color: inherit;
@@ -161,7 +157,6 @@ footer { order: 4; }
 	margin: 16px;
 	flex-grow: 0;
 	flex-shrink: 0;
-	/* Widths set in media query */
 	display: inline-flex;
 	background: #f6f6f6;
 }
@@ -231,4 +226,41 @@ footer { order: 4; }
 
 #mainview a {
 	text-decoration: none;
+}
+
+/* Starry background */
+
+@-webkit-keyframes STAR-MOVE {
+	from { background-position: 5% -5%; }
+	to { background-position: 5% 7000%; }
+}
+
+#stars {
+	z-index: -100;
+}
+
+#stars>div {
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	-webkit-animation-name: STAR-MOVE;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+}
+
+#stars>div:nth-child(1) {
+	background: transparent url(stars/1.png) repeat 5% 5%;
+	-webkit-animation-duration: 400s;
+	opacity: 0.2;
+}
+
+#stars>div:nth-child(2) {
+	background: transparent url(stars/2.png) repeat 20% 20%;
+	-webkit-animation-duration: 300s;
+	opacity: 0.12;
+}
+
+#stars>div:nth-child(3) {
+	background: transparent url(stars/3.png) repeat 35% 35%;
+	-webkit-animation-duration: 200s;
+	opacity: 0.04;
 }
