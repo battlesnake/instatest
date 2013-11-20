@@ -1,7 +1,7 @@
 "use strict";
 
 var title = 'sigma-pi.co.uk';
-var onloads = [];
+var command, query;
 
 /* Dispatch a query */
 function dispatch(command, args) {
@@ -48,8 +48,11 @@ function dispatch(command, args) {
 /* Create XHR and send it */
 function ajaxCall(query, command) {
 	var xhr = new XMLHttpRequest();
+	displayData('');
+	spinStart();
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState == 4) {
+			spinStop();
 			if (xhr.status == 200) {
 				var data = xhr.responseText;
 				/* Save address to page history */
@@ -74,7 +77,6 @@ window.onpopstate = function (event) {
 	displayData(event.state);
 };
 
-var command, query;
 onloads.push(function () {
 	if (!command)
 		return;
@@ -88,6 +90,3 @@ onloads.push(function () {
 	dispatch(command, query)
 });
 
-window.onload = function () {
-	onloads.map(function (e) { e(); });
-};
