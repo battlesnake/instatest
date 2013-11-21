@@ -25,7 +25,7 @@ function spinInit() {
 }
 
 function spinStart() {
-	spinner.spin(document.getElementById('content'));
+	spinner.spin(document.getElementsByTagName('article')[0]);
 }
 
 function spinStop() {

@@ -230,7 +230,7 @@ nav a {
 
 /* Starry background */
 
-@-webkit-keyframes STAR-MOVE {
+@-webkit-keyframes starframes {
 	from { background-position: 5% -5%; }
 	to { background-position: 5% 7000%; }
 }
@@ -242,7 +242,7 @@ nav a {
 #stars>div {
 	position: absolute;
 	top: 0; left: 0; right: 0; bottom: 0;
-	-webkit-animation-name: STAR-MOVE;
+	-webkit-animation-name: starframes;
 	-webkit-animation-timing-function: linear;
 	-webkit-animation-iteration-count: infinite;
 }
