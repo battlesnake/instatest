@@ -1,6 +1,10 @@
 var insta = require('../insta');
 
-function check(str, charset) {
+function check(str, charset, allowblank) {
+	if (!allowblank && !(str + '').length) {
+		return res.send(400, 'Required parameter missing');
+		throw 'Abort';
+	}
 	for (var i = 0; i < str.length; i++) {
 		if (charset.indexOf(str.charAt(i)) === -1)
 			return null;
@@ -9,11 +13,11 @@ function check(str, charset) {
 }
 
 function checkHex(str) {
-	return check(str, '0123456789abcdefABCDEF+-._');
+	return check(str, '0123456789abcdefABCDEF+-._', false);
 }
 
 function checkInt(str) {
-	return check(str, '0123456789+-._');
+	return check(str, '0123456789+-._', false);
 }
 
 function checkStr(str) {
@@ -40,8 +44,18 @@ module.exports = function(req, res) {
 		'media/search'	: function () { insta('/tags/' + checkStr(req.query['mediaq']) + '/media/recent', callback('media_list')); }
 	};
 	var command = req.query.command;
-	if (command && commands[command])
-		commands[command]();
+	if (command && commands[command]) {
+		/* OMG Using exceptions for flow control, exceptions shouldn't even be used for errors, blah blah blah piss off it works and has no negative noticeable side effects */
+		try {
+			commands[command]();
+		}
+		catch (err) {
+			if (err === 'Abort')
+				return;
+			else
+				throw err;
+		}
+	}
 	else
 		res.send(418, 'Unknown command: "' + command + '"');
 };
