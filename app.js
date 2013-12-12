@@ -3,6 +3,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var auth = require('./auth');
 var controllers = {
 	insta	: require('./insta'),
 	index	: require('./controllers'),

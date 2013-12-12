@@ -1,11 +1,9 @@
 var path = require('path');
 var https = require('https');
+var auth = require('./auth');
 
-var cid = process.env['CLIENT_ID'];
-var cse = process.env['CLIENT_SECRET'];
-
-if (!cid.length)
-	throw 'CLIENT_ID not set - did you remember to `source vars`?';
+var cid = auth.cid;
+var cse = auth.cse;
 
 module.exports = function (query, callback) {
 	var uri = path.join('/v1/', query) + (query.indexOf('?') == -1 ? '?' : '&') + 'client_id=' + encodeURIComponent(cid);
